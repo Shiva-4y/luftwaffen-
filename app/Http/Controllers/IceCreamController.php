@@ -12,8 +12,9 @@ class IceCreamController extends Controller
      */
     public function index()
     {
-          $iceCreams = IceCream::all();
+        $iceCreams = IceCream::all(); // Ensure this matches the variable name in your Blade file
         return view('icecreams.index', compact('iceCreams'));
+
     }
 
     /**
@@ -29,7 +30,11 @@ class IceCreamController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(IceCream::rules());
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'flavor' => 'required|string|max:255',
+            'price' => 'required|numeric'
+        ]);
 
         IceCream::create($request->all());
 
@@ -41,6 +46,7 @@ class IceCreamController extends Controller
      */
     public function show(string $id)
     {
+        $iceCream = IceCream::findOrFail($id);
         return view('icecreams.show', compact('iceCream'));
     }
 
@@ -49,6 +55,7 @@ class IceCreamController extends Controller
      */
     public function edit(string $id)
     {
+        $iceCream = IceCream::findOrFail($id);
         return view('icecreams.edit', compact('iceCream'));
     }
 
@@ -57,8 +64,13 @@ class IceCreamController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate(IceCream::rules());
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'flavor' => 'required|string|max:255',
+            'price' => 'required|numeric'
+        ]);
 
+        $iceCream = IceCream::findOrFail($id);
         $iceCream->update($request->all());
 
         return redirect()->route('icecreams.index')->with('success', 'Ice Cream updated successfully!');
@@ -69,6 +81,7 @@ class IceCreamController extends Controller
      */
     public function destroy(string $id)
     {
+        $iceCream = IceCream::findOrFail($id);
         $iceCream->delete();
 
         return redirect()->route('icecreams.index')->with('success', 'Ice Cream deleted successfully!');

@@ -42,7 +42,10 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+            {{ $slot ?? '' }}
+            </main>
+            <main>
+            @yield('content')
             </main>
         </div>
     </body>

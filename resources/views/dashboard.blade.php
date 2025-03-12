@@ -26,18 +26,18 @@
             </div>
 
             <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white  p-6 rounded-lg shadow-md  hover:shadow-xl transition-shadow">
-            <h3 class="text-xl font-bold text-primary">Feature 1</h3>
-                    <p class="text-gray-600">Explore our latest updates.</p>
-                </div>
-                <div class="bg-white  p-6 rounded-lg shadow-md  hover:shadow-xl transition-all">
-                    <h3 class="text-xl font-bold text-primary">Feature 2</h3>
-                    <p class="text-gray-600">Get the best experience.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md  hover:shadow-xl transition-shadow">
-                <h3 class="text-xl font-bold text-primary transition duration-300 hover:text-sky-400">Feature 3</h3>
-                    <p class="text-gray-600">Connect with the community.</p>
-                </div>
+    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+        <h3 class="text-xl font-bold text-pink-500">🍦 Flavor of the Day</h3>
+        <p class="text-gray-600">Showcase a unique or seasonal flavor each day to encourage repeat visits.</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all">
+        <h3 class="text-xl font-bold text-yellow-500">🍨 Build Your Own Ice Cream</h3>
+        <p class="text-slate-600">Customize your ice cream with various flavors, toppings, and syrups.</p>
+    </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+        <h3 class="text-xl font-bold text-sky-400 hover:text-sky-500">🍧 Ice Cream Stories</h3>
+        <p class="text-gray-600">Showcase the origin of flavors, fun facts, or ice cream history for engagement.</p>
+    </div>
             </div>
         </div>
     </div>
