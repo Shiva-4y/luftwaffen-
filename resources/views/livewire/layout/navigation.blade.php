@@ -23,11 +23,11 @@ new class extends Component
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" wire:navigate>
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                    </a>
-                </div>
-    
+    <a href="https://www.flaticon.com/free-icons/shop" title="shop icons" target="_blank">
+        <img src="https://scontent.fceb2-2.fna.fbcdn.net/v/t1.15752-9/483981246_1194595598722479_8004604248495517110_n.png?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeFNjgd0xHEURFiwtQ7bTDZREIExajpXeP8QgTFqOld4_8cGvE1Nomqa8ILlgqjwKO_TlE8ovmHnmAKuf3q0eTT1&_nc_ohc=lTCENb8vTGwQ7kNvgF53T5E&_nc_oc=AdhK-ueNIi92S3JR-OJiEKnMbnx7o6fDOMavmqN57U7xatJ9uC7FzvnvJ7PqZ7fBtIs&_nc_zt=23&_nc_ht=scontent.fceb2-2.fna&oh=03_Q7cD1wFkUtd9b4bd5rJs-fJVHAIlUzgS6X1oJVasQxkyX61yhg&oe=67FE4F97" alt="Shop Icon" class="block h-9 w-auto" />
+    </a>
+</div>
+
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex transition duration-300 hover:text-sky-400">

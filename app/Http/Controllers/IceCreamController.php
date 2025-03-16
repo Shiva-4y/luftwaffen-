@@ -10,10 +10,20 @@ class IceCreamController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+    
+
+    public function index(Request $request)
     {
-        $iceCreams = IceCream::all(); // Ensure this matches the variable name in your Blade file
-        return view('icecreams.index', compact('iceCreams'));
+         $query = IceCream::query();
+
+    if ($request->has('search')) {
+        $search = $request->input('search');
+        $query->where('name', 'like', '%' . $search . '%');
+    }
+
+    $icecreams = $query->get(); // or use ->paginate() for pagination
+        return view('icecreams.index', compact('icecreams'));
 
     }
 

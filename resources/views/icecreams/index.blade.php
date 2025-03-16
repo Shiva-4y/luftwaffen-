@@ -6,10 +6,34 @@
             Ice Cream List
         </h1>
 
-        <a href="{{ route('icecreams.create') }}" 
-           class="px-4 py-2 bg-primary text-white rounded-lg shadow-md hover:bg-sky-400 transition duration-300">
-            Add New Ice Cream
-        </a>
+        <div class="flex justify-between items-center mb-4">
+            <a href="{{ route('icecreams.create') }}" 
+               class="px-4 py-2 bg-primary text-white rounded-lg shadow-md hover:bg-sky-400 transition duration-300">
+                Add New Ice Cream
+            </a>
+
+            
+          
+            <form method="GET" action="{{ route('icecreams.index') }}">
+    <input 
+        type="text" 
+        name="search" 
+        placeholder="Search ice cream..." 
+        value="{{ request('search') }}" 
+        class=" p-2 rounded-md border border-gray-300 dark:border-gray-600 
+                              bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white 
+                              focus:outline-none focus:ring-2 focus:ring-sky-400">
+    
+    <button type="submit" 
+                        class="px-4 py-2 bg-primary text-white rounded-lg shadow-md hover:bg-sky-400 transition duration-300">
+                    Search
+                </button>
+</form>
+
+
+        </div>
+    
+
 
         <div class="overflow-x-auto mt-4">
             <table class="w-full table-auto border-collapse border border-gray-200 dark:border-gray-700">
@@ -23,7 +47,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($iceCreams as $iceCream)
+                    @foreach ($icecreams as $iceCream)
                         <tr class="hover:bg-sky-400 dark:hover:bg-sky-600 transition duration-300">
                             <td class="p-2 border border-gray-200 dark:border-gray-700">{{ $iceCream->name }}</td>
                             <td class="p-2 border border-gray-200 dark:border-gray-700">{{ $iceCream->size }}</td>

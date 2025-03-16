@@ -14,6 +14,8 @@ new #[Layout('layouts.guest')] class extends Component
     public string $email = '';
     public string $password = '';
     public string $password_confirmation = '';
+    public string $security_question = '';
+public string $security_answer = '';
 
     /**
      * Handle an incoming registration request.
@@ -24,9 +26,12 @@ new #[Layout('layouts.guest')] class extends Component
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+            'security_question' => ['required', 'string'],
+    'security_answer' => ['required', 'string'],
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
+        $validated['security_answer'] = Hash::make($validated['security_answer']); // Hash the answer for security
 
         event(new Registered($user = User::create($validated)));
 
@@ -74,6 +79,29 @@ new #[Layout('layouts.guest')] class extends Component
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
+
+<!-- Security Question -->
+<div class="mt-4">
+    <x-input-label for="security_question" :value="__('Security Question')" />
+    <select wire:model="security_question" id="security_question" class="block mt-1 w-full" name="security_question" required>
+        <option value="" disabled selected>Select a security question</option>
+        <option value="What is your favorite color?">What is your favorite color?</option>
+        <option value="What was the name of your first pet?">What was the name of your first pet?</option>
+        <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+    </select>
+    <x-input-error :messages="$errors->get('security_question')" class="mt-2" />
+</div>
+
+<!-- Security Answer -->
+<div class="mt-4">
+    <x-input-label for="security_answer" :value="__('Security Answer')" />
+    <x-text-input wire:model="security_answer" id="security_answer" class="block mt-1 w-full"
+                    type="text" name="security_answer" required minlength="3"/>
+    <x-input-error :messages="$errors->get('security_answer')" class="mt-2" />
+</div>
+
+
+
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}" wire:navigate>

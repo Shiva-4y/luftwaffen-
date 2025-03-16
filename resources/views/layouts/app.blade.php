@@ -41,12 +41,24 @@
             @endif
 
             <!-- Page Content -->
-            <main>
-            {{ $slot ?? '' }}
-            </main>
-            <main>
-            @yield('content')
-            </main>
+          <!-- Page Content -->
+          <main>
+    @if(!empty($slot))
+        {{ $slot }}
+    @else
+        @yield('content')
+    @endif
+</main>
+<!-- <main class="w-full">
+    @if(!empty($slot))
+        {{ $slot }}
+    @else
+        @yield('content')
+    @endif
+</main> -->
+
+
+
         </div>
     </body>
 </html>
