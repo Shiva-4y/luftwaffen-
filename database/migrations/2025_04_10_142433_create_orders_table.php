@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained(); // User who placed the order
+            $table->foreignId('ice_cream_id')->constrained(); // Ice cream ordered
+            $table->string('status')->default('pending'); // Order status (e.g., pending, completed)
             $table->timestamps();
         });
     }

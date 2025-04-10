@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IceCreamController;
 use App\Models\IceCream;
+use App\Http\Controllers\OrderController;
 
 Route::view('/', 'welcome');
 
@@ -19,6 +20,12 @@ Route::view('profile', 'profile')
 
     Route::resource('icecreams', IceCreamController::class);
     // Route::get('/icecreams', [IceCreamController::class, 'index'])->name('icecreams.index');
+    Route::resource('icorder', IceCreamController::class);
+    Route::get('/icorder', [IceCreamController::class, 'order'])->name('icorder.order');
+    Route::post('/order', [OrderController::class, 'store'])->name('icorder.store');
+    Route::get('/order/confirmation', [OrderController::class, 'confirmation'])->name('icorder.confirmation');
+    Route::get('/order/view', [OrderController::class, 'viewOrders'])->name('icorder.view');
+    Route::post('/orders/{orderId}/pay', [OrderController::class, 'markAsPaid'])->name('icorder.pay');
 
 
 require __DIR__.'/auth.php';
