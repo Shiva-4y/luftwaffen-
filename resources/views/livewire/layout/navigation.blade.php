@@ -40,6 +40,11 @@ new class extends Component
         {{ __('Ice Cream Maker') }}
     </x-nav-link>
 </div>
+<div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex transition duration-300 hover:text-sky-400">
+    <x-nav-link :href="route('icecreams.index')" :active="request()->routeIs('icecreams.index')">
+        {{ __('Order Ice Cream') }}
+    </x-nav-link>
+</div>
 
                
 
