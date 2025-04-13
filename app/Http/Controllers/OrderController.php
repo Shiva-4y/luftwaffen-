@@ -43,18 +43,55 @@ class OrderController extends Controller
         // Pass the orders to the view
         return view('icorder.view', compact('orders'));
     }
-
     public function markAsPaid($orderId)
+    {
+        // Find the order by ID
+        $order = Order::findOrFail($orderId);
+    
+        // Check if the payment amount matches or is greater than the order price
+        $paymentAmount = request()->input('paymentAmount');  // Get the payment amount from the form submission
+        if ($paymentAmount < $order->iceCream->price) {
+            return redirect()->route('icorder.view')->with('error', 'Insufficient payment amount.');
+        }
+    
+        // Update the order status to 'completed'
+        $order->status = 'completed';
+        $order->save();
+    
+        // Return a success message
+        return redirect()->route('icorder.view')->with('status', 'Payment Successful! Order marked as completed.');
+    }
+    
+
+public function payForm($id)
 {
-    // Find the order by ID
+    $order = Order::findOrFail($id);
+    
+    return view('orders.pay', compact('order'));
+}
+
+// Process the payment and update the order status
+
+
+
+
+
+public function processPaymentAjax(Request $request, $orderId)
+{
     $order = Order::findOrFail($orderId);
 
-    // Update the order status to 'completed'
-    $order->status = 'completed';
-    $order->save();
+    // Process the payment (you can check the payment amount, etc.)
+    if ($request->paymentAmount >= $order->iceCream->price) {
+        // Update order status
+        $order->status = 'completed';
+        $order->payment_status = 'paid';
+        $order->save();
 
-    // Redirect back to the order view with a success message
-    return redirect()->route('icorder.view')->with('status', 'Order marked as completed!');
+        return response()->json(['success' => true]);
+    }
+
+    return response()->json(['success' => false]);
 }
+
     
 }

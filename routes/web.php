@@ -26,6 +26,11 @@ Route::view('profile', 'profile')
     Route::get('/order/confirmation', [OrderController::class, 'confirmation'])->name('icorder.confirmation');
     Route::get('/order/view', [OrderController::class, 'viewOrders'])->name('icorder.view');
     Route::post('/orders/{orderId}/pay', [OrderController::class, 'markAsPaid'])->name('icorder.pay');
+    Route::post('/order/pay/{id}', [OrderController::class, 'processPayment'])->name('order.processPayment');
+
+
+    // Route::post('/order/pay/{orderId}', [OrderController::class, 'processPayment'])->name('icorder.view');
+    Route::post('/order/pay/{orderId}', [OrderController::class, 'processPaymentAjax'])->name('order.pay.ajax');
 
 
 require __DIR__.'/auth.php';
